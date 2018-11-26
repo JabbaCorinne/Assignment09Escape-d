@@ -199,7 +199,7 @@ public class Main {
                 break;
 
             default:
-                output = "In the foyer there is a bench, a chest, an unlit candle, and a note. There is a locked door to the north.\n";
+                output = "Not a helpful turn. Remember: in the foyer there is a bench, a chest, an unlit candle, and a note. There is a locked door to the north.\n";
         }
     }
 
@@ -267,7 +267,7 @@ public class Main {
                 break;
 
             default:
-                output = "In the library there are stacks of books lining the shelves, a desk, a pen, and a scroll. There is another locked door to the north.\n";
+                output = "Not a helpful turn. Remember: in the library there are stacks of books lining the shelves, a desk, a pen, and a scroll. There is another locked door to the north.\n";
         }
     }
 
@@ -320,7 +320,7 @@ public class Main {
                 break;
 
             default:
-                output = "In the conservatory there is a large door to the north that is locked. There are three instruments- a trumpet, a piano, and a drum. There is a sheet of music on a stand.\n";
+                output = "Not a helpful turn. Remember: in the conservatory there is a large door to the north that is locked. There are three instruments- a trumpet, a piano, and a drum. There is a sheet of music on a stand.\n";
         }
     }
 }
