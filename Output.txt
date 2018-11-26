@@ -1,0 +1,102 @@
+/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home/bin/java "-javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=64973:/Applications/IntelliJ IDEA CE.app/Contents/bin" -Dfile.encoding=UTF-8 -classpath /Users/corinnejabba1/Desktop/Escape'd/out/production/Escape'd Main
+Greetings, player! You are trapped in a mansion and need to escape, but you only have 30 turns. You can enter the commands [help], [look], or two-word verb-noun statements. The command [help] will remind you of the commands you can use, and [look] without a noun will restate the description of the room you are in. Your verbs are [open], [read], [look], [close], [write], [get], [light], and [play]. Your nouns are [door], [candle], [book], [trumpet], [room], [note], [pen], [piano], [bench], [matches], [scroll], [drum], [chest], [shelves], [music], and [lock]. To move, you can indicate direction with the commands [north], [south], [east], and [west]. Do not include brackets in your inputs. Best of luck!
+
+
+You find yourself in a large, dim foyer. There is a great, wooden door with a gold handle to the north. To the west is a red bench pushed up against the wall. To the east is a small, black chest on the floor. In the center of the room, there is a large candle. The candle is unlit.
+ You have 30 turns to escape.
+>>look
+
+You find yourself in a large, dim foyer. There is a great, wooden door with a gold handle to the north. To the west is a red bench pushed up against the wall. To the east is a small, black chest on the floor. In the center of the room, there is a large candle. The candle is unlit.
+ You have 29 turns to escape.
+>>look candle
+
+The candle is not lit.
+ You have 28 turns to escape.
+>>look bench
+
+There is a small, folded-up note sitting on the bench against the western wall.
+ You have 27 turns to escape.
+>>read note
+
+After unfolding the note, you can make out the phrase "May my light show you the way" in cursive.
+ You have 26 turns to escape.
+>>look chest
+
+You see the small, black chest on the floor, but it is closed. However, it does not seem to be locked.
+ You have 25 turns to escape.
+>>open chest
+
+Upon opening the chest, you find a pack of matches.
+ You have 24 turns to escape.
+>>get matches
+
+You retrieve the pack of matches from the chest.
+ You have 23 turns to escape.
+>>light candle
+
+You light the candle with a match. Suddenly, a fierce wind blows through the room, extinguishing the match in your hand but making the candle burn brighter. You then hear a loud metal grinding sound from the north.
+ You have 22 turns to escape.
+>>look door
+
+The door to the north is unlocked, but it's closed.
+ You have 21 turns to escape.
+>>open door
+
+The door has been opened.
+ You have 20 turns to escape.
+>>north
+
+You leave the foyer, and the door slams loudly behind you. It relocks automatically, so you cannot return to the foyer. You now find yourself in a library filled with shelves of books. There is a wooden desk in the center of the room with a pen and scroll lying on it. There is a blue door to the north with a silver handle.
+You have 19 turns left.
+>>look
+
+You find yourself in a library filled with shelves of books. There is a wooden desk in the center of the room with a pen and scroll lying on it. There is a blue door to the north with a silver handle.
+You have 18 turns left.
+>>look shelves
+
+When you search the closest bookshelf, you see an open book one of the shelves that stands out to you. It is titled "The Autobiography of..." with the rest of the title missing.
+You have 17 turns left.
+>>get pen
+
+You have picked up the pen from the desk.
+You have 16 turns left.
+>>read scroll
+
+You unfold the scroll. It says "Share your story" in cursive writing.
+You have 15 turns left.
+>>write book
+
+By writing your name on the book, you complete the autobiography. You then hear a loud metal grinding sound from the north.
+You have 14 turns left.
+>>look door
+
+The door to the north is unlocked, but it's closed.
+You have 13 turns left.
+>>open door
+
+The door has been opened.
+You have 12 turns left.
+>>north
+
+You leave the library, and the door slams loudly behind you. It relocks automatically, so you cannot return to the library. You now find yourself in the conservatory. There is a large yellow door to the north that is locked. There are three instruments- a shiny trumpet, a drum, and a grand piano. There's also a piece of sheet music on a stand in the middle of the room.
+ You have 11 turns left.
+>>look music
+
+The sheet music is empty, but there is something written on the musical staff.
+ You have 10 turns left.
+>>read music
+
+You look at the musical staff and see this phrase: "Timbre, Tone, and Time". You are well-versed in music and know that this represents the trumpet, piano, and drum.
+ You have 9 turns left.
+>>play trumpet
+
+Luckily, you know how to play the trumpet. You do so successfully.
+ You have 8 turns left.
+>>play piano
+
+Luckily, you know how to play the piano. You successfully play Someone Like You by Adele.
+ You have 7 turns left.
+>>play drum
+
+ Success! The yellow door to the north opens and you escape the conservatory, completing the game with 6 spare turns.
+Process finished with exit code 0
