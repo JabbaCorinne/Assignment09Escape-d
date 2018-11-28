@@ -1,5 +1,4 @@
 /* Here is how the game works for reference:
-
 The escape room requires three conditions to be met, occurring in three individually connected rooms located in a giant mansion.
 In order to successfully win the escape room, you have only 30 turns to solve the room before you are trapped in the mansion forever.
 
@@ -52,19 +51,22 @@ lock
   */
 
 // import scanner so user can input commands when prompted
+
 import java.util.Scanner;
 
 public class Main {
 
     public static Scanner scan;
     public static int turnsToEscape = 30;
-    public static String output = "You find yourself in a large, dim foyer. There is a great, wooden door with a gold handle to the north. To the west is a red bench pushed up against the wall. To the east is a small, black chest on the floor. In the center of the room, there is a large candle. The candle is unlit.\n";
+    public static String output = "You find yourself in a large, dim foyer. There is a great, red door with a gold handle to the north. To the west is a wooden bench pushed up against the wall. To the east is a small, black chest on the floor. In the center of the room, there is a large candle. The candle is unlit.\n";
 
     //location for player; start with inFoyer as true because this is the room the player begins in
     public static boolean inFoyer = true;
     public static boolean inLibrary = false;
     public static boolean inConservatory = false;
     //foyer conditions (determined through tests)
+    public static boolean lookedBench= false;
+    public static boolean readNote= false;
     public static boolean chestOpen = false;
     public static boolean hasMatches = false;
     public static boolean candleLit = false;
@@ -76,6 +78,7 @@ public class Main {
     public static boolean blueDoorLocked = true;
     public static boolean blueDoorOpen = false ;
     //conservatory conditions (determined through tests)
+    public static boolean trumpetAcquired = false;
     public static boolean playTrumpet = false;
     public static boolean playPiano = false;
     public static boolean playDrum = false;
@@ -84,7 +87,7 @@ public class Main {
     public static void main(String[] args) {
 
         //introductory statement containing information for player
-        System.out.printf("Greetings, player! You are trapped in a mansion and need to escape, but you only have 30 turns. You can enter the commands [help], [look], or two-word verb-noun statements. The command [help] will remind you of the commands you can use, and [look] without a noun will restate the description of the room you are in. Your verbs are [open], [read], [look], [close], [write], [get], [light], and [play]. Your nouns are [door], [candle], [book], [trumpet], [room], [note], [pen], [piano], [bench], [matches], [scroll], [drum], [chest], [shelves], [music], and [lock]. To move, you can indicate direction with the commands [north], [south], [east], and [west]. Do not include brackets in your inputs. Best of luck!\n\n");
+        System.out.printf("Greetings, player! You are trapped in a mansion and need to escape, but you only have 30 turns. You can enter the commands [help], [look], or two-word verb-noun statements. The command [help] will remind you of the commands you can use, and [look] without a noun will restate the description of the room you are in. Your verbs are [open], [read], [look], [close], [write], [get], [light], and [play]. Your nouns are [door], [candle], [book], [trumpet], [room], [note], [pen], [piano], [bench], [matches], [scroll], [drum], [chest], [shelves], [music], and [lock]. To move, you can indicate direction with the commands [go north], [go south], [go east], and [go west]. Do not include brackets in your inputs. Best of luck!\n\n");
 
         //ensure number of turns to escape is maxed out at 30; playing trumpet, piano, and drum stops turns
         for (int i = 1; i < 31; i++) {
@@ -137,13 +140,21 @@ public class Main {
                 break;
 
             case "look bench":
+                lookedBench= true;
                 output = "There is a small, folded-up note sitting on the bench against the western wall.\n";
                 break;
 
             case "read note":
-                output = "After unfolding the note, you can make out the phrase \"May my light show you the way\" in cursive.\n";
+                if (lookedBench){
+                    readNote= true;
+                    output = "After unfolding the note, you can make out the phrase \"May my light show you the way\" in cursive.\n";
+                }
+                else {
+                    output= "Don't get ahead of yourself! You've missed a step... think about the bench.\n";
+                }
                 break;
 
+            //no requirements for "look chest" because the player could technically take this action without reading the note and looking at the bench
             case "look chest":
                 output = "You see the small, black chest on the floor, but it is closed. However, it does not seem to be locked.\n";
                 break;
@@ -153,9 +164,15 @@ public class Main {
                 output = "Upon opening the chest, you find a pack of matches.\n";
                 break;
 
+            // chest must be opened for player to retrieve matches
             case "get matches":
-                hasMatches = true;
-                output = "You retrieve the pack of matches from the chest.\n";
+                if (chestOpen){
+                    hasMatches= true;
+                    output = "You retrieve the pack of matches from the chest.\n";
+                }
+                else {
+                    output= "Don't get ahead of yourself! You've missed a step... think about the chest.\n";
+                }
                 break;
 
             case "light candle":
@@ -172,14 +189,14 @@ public class Main {
             case "look door":
                 if (!redDoorLocked) {
                     if (redDoorOpen) {
-                        output = "The door to the north is unlocked and open.\n";
+                        output = "The red door to the north is unlocked and open.\n";
                     }
                     else {
-                        output = "The door to the north is unlocked, but it's closed.\n";
+                        output = "The red door to the north is unlocked, but it's closed.\n";
                     }
                 }
                 else {
-                    output = "The door to the north is locked :(\n";
+                    output = "The red door to the north is locked :(\n";
                 }
                 break;
 
@@ -190,12 +207,24 @@ public class Main {
                 }
                 break;
 
-            case "north":
+            case "go north":
                 if (redDoorOpen) {
                     inFoyer = false;
                     inLibrary = true;
-                    output = "You leave the foyer, and the door slams loudly behind you. It relocks automatically, so you cannot return to the foyer. You now find yourself in a library filled with shelves of books. There is a wooden desk in the center of the room with a pen and scroll lying on it. There is a blue door to the north with a silver handle.\n";
+                    output = "You leave the foyer, and the door slams loudly behind you. It re-locks automatically, so you cannot return to the foyer. You now find yourself in a library filled with shelves of books. There is a wooden desk in the center of the room with a pen and scroll lying on it. There is a blue door to the north with a silver handle.\n";
                 }
+                break;
+
+            case "go south":
+                output = "Wrong direction! Try again.\n";
+                break;
+
+            case "go east":
+                output = "Wrong direction! Try again.\n";
+                break;
+
+            case "go west":
+                output = "Wrong direction! Try again.\n";
                 break;
 
             default:
@@ -258,12 +287,24 @@ public class Main {
                 }
                 break;
 
-            case "north":
+            case "go north":
                 if (blueDoorOpen) {
                     inLibrary = false;
                     inConservatory = true;
                     output = "You leave the library, and the door slams loudly behind you. It relocks automatically, so you cannot return to the library. You now find yourself in the conservatory. There is a large yellow door to the north that is locked. There are three instruments- a shiny trumpet, a drum, and a grand piano. There's also a piece of sheet music on a stand in the middle of the room.\n";
                 }
+                break;
+
+            case "go south":
+                output = "Wrong direction! Try again.\n";
+                break;
+
+            case "go east":
+                output = "Wrong direction! Try again.\n";
+                break;
+
+            case "go west":
+                output = "Wrong direction! Try again.\n";
                 break;
 
             default:
@@ -289,14 +330,24 @@ public class Main {
                 output = "You look at the musical staff and see this phrase: \"Timbre, Tone, and Time\". You are well-versed in music and know that this represents the trumpet, piano, and drum.\n";
                 break;
 
+            case "get trumpet":
+                trumpetAcquired= true;
+                output = "Nice job- you've picked up the trumpet. Now what?\n";
+                break;
+
             case "play trumpet":
-                if (!playPiano && !playDrum) {
+                if (!playPiano && !playDrum && trumpetAcquired) {
                     playTrumpet = true;
                     output = "Luckily, you know how to play the trumpet. You do so successfully.\n";
                 }
                 else {
-                    output = "Oh no... the trumpet is broken and won't play :(\n";
+                    output = "Did you get the trumpet yet? If you did, it looks like something is wrong. Maybe the trumpet is broken? That would be unfortunate.\n";
                 }
+                break;
+
+            //player may not know to add this step because "go piano" sounds weird
+            case "go piano":
+                output = "Nice job- you've sat down at the piano. Now what?\n";
                 break;
 
             case "play piano":
@@ -305,8 +356,13 @@ public class Main {
                     output = "Luckily, you know how to play the piano. You successfully play Someone Like You by Adele.\n";
                 }
                 else {
-                    output = "Oh no... the piano is broken and won't play :(\n";
+                    output = "Seems like your sense of order might be off...\n";
                 }
+                break;
+
+            //player may not know to add this step because "go drum" sounds weird
+            case "go drum":
+                output = "Nice job- you've sat down at the drum set. Now what?\n";
                 break;
 
             case "play drum":
@@ -315,7 +371,7 @@ public class Main {
                     output = "Luckily, you know how to play the drums, too! You play Fool in the Rain by Led Zeppelin successfully.\n";
                 }
                 else {
-                    output = "Oh no... the drum is broken and won't play :(\n";
+                    output = "Seems like your sense of order might be off...\n";
                 }
                 break;
 
