@@ -104,15 +104,18 @@ public class Main {
             System.out.printf("\nSuccess! You escape the conservatory, completing the game with %d spare turns.", turnsToEscape);
         } else {
             System.out.printf("\nNice try! You have failed the escape room challenge. Better luck next time!");
+        }
     }
 
     //location of player (method for each room)
     public static void playGame() {
         if (inFoyer) {
             foyer();
-        } else if (inLibrary) {
+        }
+        else if (inLibrary) {
             library();
-        } else if (inConservatory) {
+        }
+        else if (inConservatory) {
             conservatory();
         }
     }
@@ -363,11 +366,14 @@ public class Main {
                 break;
 
             case "play piano":
-                if (playTrumpet && !playDrum) {
+                if (playTrumpet && !playDrum && !playPiano) {
                     playPiano = true;
                     output = "Luckily, you know how to play the piano. You successfully play Someone Like You by Adele.\n";
                 } else {
                     output = "Seems like your sense of order might be off...\n";
+                    playTrumpet= false;
+                    playPiano=false;
+                    playDrum=false;
                 }
                 break;
 
